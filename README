@@ -1,0 +1,28 @@
+Nom de projet :Louage distribué
+
+Application Java de réservation de places de louage, avec notifications en temps réel.
+
+le condidat: Yasmine Charaa LSI3 1.2
+lien du github:https://github.com/123yas321mine/louage-distribue
+
+ Technologies
+- RMI : réserver, annuler, consulter les places (client → serveur)
+- JMS : notifications (Topic pour tous, Queue pour un passager)
+- JNDI : configuration du broker et des destinations (`jndi.properties`)
+
+Structure de projet :
+louage/
+ ├─ model    Trajet, Reservation
+ ├─ rmi      IReservation, ReservationImpl, ServeurRMI
+ ├─ jms      NotificationProducer, NotificationListener
+ ├─ config   JndiConfig
+ └─ client   ClientGUI (Swing), ClientApp (console)
+
+
+Lancement:
+1. `docker compose up -d` (ActiveMQ, console : http://localhost:8161/admin)
+2. Lancer `ServeurRMI`
+3. Lancer `ClientGUI` (un ou plusieurs clients)
+
+Fonction innovante:
+Quand un louage est complet, un message « départ imminent » est envoyé à tous les clients.
